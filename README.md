@@ -7,8 +7,7 @@ No root. No Shizuku. Normal user APK. Works on Android 10+.
 ## What this does
 
 Replicates OPPO's volume-hold burst (`CShot`) using stock Camera2 API,
-with **no shot limit** and the same quality tuning found in the decompiled
-factory app (`Appareilphoto-3_465_2.apk`).
+with **no shot limit** :)
 
 ---
 
