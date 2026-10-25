@@ -1,0 +1,216 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#000">
+
+    <!-- ── Live preview ──────────────────────────────────────────────── -->
+    <TextureView
+        android:id="@+id/texture_view"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toTopOf="@id/controls_bar"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"/>
+
+    <!-- ── Top HUD ───────────────────────────────────────────────────── -->
+    <LinearLayout
+        android:id="@+id/top_hud"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:padding="12dp"
+        android:background="#66000000"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent">
+
+        <!-- Shot fired counter -->
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:orientation="vertical"
+            android:gravity="center">
+
+            <TextView
+                android:id="@+id/shot_counter"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="0"
+                android:textSize="36sp"
+                android:textColor="#FFFFFF"
+                android:fontFamily="monospace"
+                android:textStyle="bold"/>
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="FIRED"
+                android:textSize="9sp"
+                android:letterSpacing="0.15"
+                android:textColor="#AAAAAA"
+                android:fontFamily="monospace"/>
+        </LinearLayout>
+
+        <!-- Burst active indicator -->
+        <TextView
+            android:id="@+id/burst_indicator"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:text="● BURST"
+            android:textSize="13sp"
+            android:textColor="#FF3B3B"
+            android:fontFamily="monospace"
+            android:textStyle="bold"
+            android:padding="8dp"
+            android:visibility="gone"/>
+
+        <!-- Saved counter + queue depth -->
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:orientation="vertical"
+            android:gravity="center">
+
+            <TextView
+                android:id="@+id/save_counter"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="0"
+                android:textSize="36sp"
+                android:textColor="#5BF07A"
+                android:fontFamily="monospace"
+                android:textStyle="bold"/>
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="SAVED"
+                android:textSize="9sp"
+                android:letterSpacing="0.15"
+                android:textColor="#AAAAAA"
+                android:fontFamily="monospace"/>
+        </LinearLayout>
+    </LinearLayout>
+
+    <!-- Queue depth + specs overlay -->
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:padding="8dp"
+        android:background="#55000000"
+        android:paddingHorizontal="12dp"
+        app:layout_constraintBottom_toTopOf="@id/controls_bar"
+        app:layout_constraintStart_toStartOf="parent">
+
+        <TextView
+            android:id="@+id/specs_text"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="— MP"
+            android:textSize="11sp"
+            android:textColor="#CCCCCC"
+            android:fontFamily="monospace"/>
+
+        <TextView
+            android:id="@+id/queue_text"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="queue: 0"
+            android:textSize="10sp"
+            android:textColor="#888888"
+            android:fontFamily="monospace"/>
+    </LinearLayout>
+
+    <!-- ── Bottom controls bar ───────────────────────────────────────── -->
+    <LinearLayout
+        android:id="@+id/controls_bar"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:background="#EE0A0A0A"
+        android:paddingTop="12dp"
+        android:paddingBottom="20dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent">
+
+        <!-- Status text -->
+        <TextView
+            android:id="@+id/status_text"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Initialising…"
+            android:textSize="11sp"
+            android:textColor="#999999"
+            android:fontFamily="monospace"
+            android:gravity="center"
+            android:padding="6dp"/>
+
+        <!-- Hold hint -->
+        <TextView
+            android:id="@+id/hold_hint"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="HOLD shutter or VOL ▼ for burst  ·  tap for single"
+            android:textSize="10sp"
+            android:textColor="#666677"
+            android:fontFamily="monospace"
+            android:gravity="center"
+            android:visibility="gone"/>
+
+        <!-- Main shutter row -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:gravity="center"
+            android:paddingTop="8dp">
+
+            <!-- Last thumbnail -->
+            <ImageView
+                android:id="@+id/thumb_view"
+                android:layout_width="60dp"
+                android:layout_height="60dp"
+                android:layout_marginEnd="24dp"
+                android:background="#1A2A1A"
+                android:scaleType="centerCrop"
+                android:contentDescription="Last shot"/>
+
+            <!-- Shutter button (ring + inner) -->
+            <FrameLayout
+                android:layout_width="80dp"
+                android:layout_height="80dp">
+
+                <!-- Outer ring — pulses during burst -->
+                <View
+                    android:id="@+id/shutter_ring"
+                    android:layout_width="80dp"
+                    android:layout_height="80dp"
+                    android:background="@drawable/shutter_ring"/>
+
+                <!-- Inner button -->
+                <View
+                    android:id="@+id/shutter_btn"
+                    android:layout_width="64dp"
+                    android:layout_height="64dp"
+                    android:layout_gravity="center"
+                    android:background="@drawable/shutter_inner"
+                    android:clickable="true"
+                    android:focusable="true"/>
+            </FrameLayout>
+
+            <!-- Spacer matching thumbnail width -->
+            <View
+                android:layout_width="60dp"
+                android:layout_height="60dp"
+                android:layout_marginStart="24dp"/>
+        </LinearLayout>
+    </LinearLayout>
+
+</androidx.constraintlayout.widget.ConstraintLayout>
